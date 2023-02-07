@@ -1,0 +1,18 @@
+# Завдання 1
+#
+# Створіть список та введіть його значення. Знайдіть найбільший та найменший елемент списку,
+# а також суму та середнє арифметичне його значень.
+
+sequence = []
+while len(sequence) < 1:
+    sequence = list(input("Введіть послідовність чисел: ").split())
+    for index, element in enumerate(sequence):
+        try:
+            sequence[index] = float(element)
+        except ValueError:
+            print("Помилка при введенні. Допускаються лише числові значення.")
+            sequence.clear()
+print("Найбільший елемент списку:", max(sequence))
+print("Найменший елемент списку:", min(sequence))
+print("Сума елементів списку:", sum(sequence))
+print("Середнє арифметичне значень списку:", round(sum(sequence) / len(sequence), 2))

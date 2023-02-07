@@ -1,0 +1,28 @@
+# Завдання 3
+#
+# Простим називається число, яке ділиться націло лише на одиницю і на саме себе. Число 1 не вважається простим.
+# Напишіть програму, яка знаходить усі прості числа в заданому проміжку, виводить їх на екран,
+# а потім на вимогу користувача виводить їхню суму або добуток.
+
+my_range = range(1, 16)
+sequence = []
+for element in my_range:
+    flag_simple = False
+    for iteration in range(2, element):
+        if element % iteration == 0:
+            flag_simple = True
+            break
+    if element != 1 and not flag_simple:
+        sequence.append(element)
+print(f"Множина простих чисел на заданому проміжку: {sequence}")
+question = input("Отримати суму (1) чи добуток (2) простих чисел проміжку: ")
+match question:
+    case "1":
+        print(f"Сума: {sum(sequence)}")
+    case "2":
+        answer = 1
+        for element in sequence:
+            answer *= element
+        print(f"Добуток: {answer}")
+    case _:
+        print("Некоректна операція. Роботу програми завершено.")

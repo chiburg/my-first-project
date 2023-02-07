@@ -1,0 +1,38 @@
+# Завдання 2
+#
+# Є два списки, які наповнюються користувачем з клавіатури. Сформувати список, в якому будуть міститися
+# унікальні значення першого відносно другого списку та навпаки без повторень. Роздрукувати підсумковий об'єкт
+# на екран в прямій послідовності, зворотній, а також виконати сортування за зростанням та спаданням.
+
+sequence1 = list(input("Введіть першу послідовність: ").split())
+sequence2 = list(input("Введіть другу послідовність: ").split())
+sequence_res = []
+
+# # Якщо жоден список не містить буквенних елементів, перетворюємо всі на int. Інакше обробляємо списки str.
+for element in sequence1 + sequence2:
+    try:
+        int(element)
+        flag_str = False
+    except ValueError:
+        flag_str = True
+        break
+
+if not flag_str:
+    sequence1 = list(map(int, sequence1))
+    sequence2 = list(map(int, sequence2))
+
+# # Додаємо в новий список унікальні значення першого списку відносно другого
+for element in sequence1:
+    if sequence2.count(element) == 0 and element not in sequence_res:
+        sequence_res.append(element)
+
+# # Додаємо в новий список унікальні значення другого списку відносно першого
+for element in sequence2:
+    if sequence1.count(element) == 0 and element not in sequence_res:
+        sequence_res.append(element)
+
+print("Підсумковий список:", sequence_res)
+sequence_res.reverse()
+print("Підсумковий список в зворотньому порядку:", sequence_res)
+print("Підсумковий список за зростанням:", sorted(sequence_res))
+print("Підсумковий список за спаданням:", sorted(sequence_res, reverse=True))
